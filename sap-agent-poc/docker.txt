@@ -1,0 +1,24 @@
+# Use a lightweight Python slug
+FROM python:3.9-slim-buster
+
+# Set working directory (Standard practice)
+WORKDIR /app
+
+# Install system dependencies for build tools (Shows you know Linux)
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy requirements and install
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy source code
+COPY . .
+
+# Define the entrypoint (The command that runs your agent)
+ENTRYPOINT ["python", "main.py"]
+
+# Add metadata (Professional touch)
+LABEL maintainer="rakshitya2000@gmail.com"
+LABEL description="SAP Incident Triage Engine - Edge Deployment"

@@ -1,0 +1,36 @@
+----------------------------------------------------------------------------------------------------
+Runtime Errors         TIME_OUT
+Date and Time          07.02.2026 14:20:55
+----------------------------------------------------------------------------------------------------
+
+Short text
+    Time limit exceeded.
+
+What happened?
+    The program "Z_CUSTOM_INVENTORY_REPORT" has exceeded the maximum
+    permitted runtime without interruption.
+    
+    The maximum runtime is defined by the system profile parameter
+    "rdisp/max_wprun_time".
+    Current value: 600 seconds.
+
+Error analysis
+    After 600 seconds, the system stopped the process to prevent
+    blocking the work process.
+    
+    This usually indicates an infinite loop or a database selection 
+    without an index.
+
+Information on where terminated
+    Termination occurred in the ABAP program "Z_CUSTOM_INVENTORY_REPORT" - in "CALCULATE_STOCK".
+    
+Source Code Extract
+Line  SourceCde
+  105    LOOP AT lt_mara INTO ls_mara.
+  106      SELECT SINGLE * FROM mard INTO ls_mard
+  107        WHERE matnr = ls_mara-matnr.
+>>108      " Missing End-condition for heavy calculation
+  109      WHILE lv_calc_flag = 'X'.
+  110         ADD 1 TO lv_counter.
+  111      ENDWHILE.
+  112    ENDLOOP.

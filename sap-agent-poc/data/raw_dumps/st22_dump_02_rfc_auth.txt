@@ -1,0 +1,36 @@
+----------------------------------------------------------------------------------------------------
+Runtime Errors         RFC_NO_AUTHORITY
+Date and Time          07.02.2026 10:45:01
+----------------------------------------------------------------------------------------------------
+
+Short text
+    User "RFC_USER_01" has no RFC authorization for function group "SYST".
+
+What happened?
+    The user "RFC_USER_01" attempted to execute a function module from
+    the function group "SYST", but does not have the necessary
+    RFC authorization.
+
+Error analysis
+    The RFC call was triggered from the system "PRD_100".
+    The target system "BW_200" rejected the execution.
+    
+    Authorization Object: S_RFC
+    Activity: 16 (Execute)
+    Function Group: SYST
+
+System environment
+    SAP Release..... 750
+    Host............ sap-app-04
+    Database........ HANA
+
+User and Transaction
+    Client.............. 100
+    User................ BACKGROUND_JOB
+    Transaction......... SM59
+    Program............. SAPMSSY1
+
+How to correct the error
+    Check the user master record for user "RFC_USER_01".
+    Assign the authorization object S_RFC with value 'SYST' to the user's profile.
+    Regenerate the profile using transaction PFCG.

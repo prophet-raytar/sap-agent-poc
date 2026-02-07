@@ -1,0 +1,13 @@
+# Core Logic
+argparse==1.4.0
+pydantic==2.6.1  # For structured data validation (shows engineering rigor)
+regex==2023.12.25
+
+# AI & Inference (The heavy hitters)
+# llama-cpp-python==0.2.26  # For loading GGUF models on RTX 3060
+# langchain==0.1.0          # For chaining the RAG flow
+# faiss-cpu==1.7.4          # For Vector Store (Knowledge Base)
+# torch==2.1.2+cu121        # PyTorch with CUDA support
+
+# Observability (The "Systems Engineer" touch)
+# opentelemetry-api==1.22.0

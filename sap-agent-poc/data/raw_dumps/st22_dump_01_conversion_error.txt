@@ -1,0 +1,41 @@
+----------------------------------------------------------------------------------------------------
+Runtime Errors         CONVT_NO_NUMBER
+Exception              CX_SY_CONVERSION_NO_NUMBER
+Date and Time          07.02.2026 09:14:22
+----------------------------------------------------------------------------------------------------
+
+Short text
+    Unable to interpret "2026-Feb-07" as a number.
+
+What happened?
+    Error in the ABAP Application Program
+    The current ABAP program "SAPLVA01" had to be terminated because it has
+    come across a statement that unfortunately cannot be executed.
+
+Error analysis
+    An exception occurred that is explained in detail below.
+    The exception, which is assigned to class 'CX_SY_CONVERSION_NO_NUMBER', was not
+    caught in procedure "CONVERT_DATE_FORMAT" "(FORM)", nor was it propagated by a
+    RAISING clause.
+    Since the caller of the procedure could not have anticipated that the
+    exception would occur, the current program is terminated.
+    The reason for the exception is:
+    The program attempted to interpret the value "2026-Feb-07" as a number,
+    but the value contains characters that are not digits.
+
+Information on where terminated
+    Termination occurred in the ABAP program "SAPLVA01" - in "CONVERT_DATE_FORMAT".
+    The main program was "SAPMV45A ".
+
+    In the source code you have the termination point in line 42
+    of the (Include) program "LVA01F02".
+
+Source Code Extract
+Line  SourceCde
+   39    DATA: lv_date_str TYPE string.
+   40    lv_date_str = it_data-date.
+   41  * Conversion Trigger
+>> 42    MOVE lv_date_str TO lv_numeric_date.
+   43    IF sy-subrc <> 0.
+   44       MESSAGE 'Invalid Date' TYPE 'E'.
+   45    ENDIF.
