@@ -19,7 +19,7 @@ class SAPTriageAgent:
         Simulates the extraction of error codes and RAG lookup.
         In a real scenario, this would generate embeddings.
         """
-        # 1. Extract the Error Code using Regex (Proves you know Regex)
+        # 1. Extract the Error Code using Regex 
         error_match = re.search(r"Runtime Errors\s+(\w+)", log_content)
         program_match = re.search(r"ABAP program\s+\"([^\"]+)\"", log_content)
         
@@ -32,7 +32,7 @@ class SAPTriageAgent:
         print(f"[AGENT] Detected Error: {error_code} in Program: {program}")
         time.sleep(0.5) # Simulate "thinking"
 
-        # 2. Simulate RAG Retrieval & Reasoning (Chain of Thought)
+        # 2. Simulate RAG Retrieval & Reasoning 
         if error_code == "CONVT_NO_NUMBER":
             return {
                 "error": error_code,
@@ -82,4 +82,5 @@ if __name__ == "__main__":
         print(json.dumps(result, indent=4))
         
     except FileNotFoundError:
+
         print(f"[ERROR] File {args.input} not found.")
